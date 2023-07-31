@@ -21,7 +21,7 @@ Download [weights.zip](https://github.com/zhangfanmark/DDSurfer/releases), and u
 
 # Example
 
-Downlaod [100HCP-population-mean-T2.nii.gz] (https://zenodo.org/record/2648292/files/100HCP-population-mean-T2.nii.gz?download=1), and place it under the code root folder. 
+Downlaod [100HCP-population-mean-T2.nii.gz](https://zenodo.org/record/2648292/files/100HCP-population-mean-T2.nii.gz?download=1), and place it under the code root folder. 
 Download [testdata.zip](https://github.com/zhangfanmark/DDSurfer/releases), and uncompress to the code root folder.
 
     bash process.sh
