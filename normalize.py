@@ -22,7 +22,7 @@ def main():
     parser.add_argument(
         '--output', default="",help='output file.')
     parser.add_argument(
-        '--flip', type=int, default=1, help='flip mask')
+        '--flip', type=int, default=0, help='flip mask')
 
     args = parser.parse_args()
 
