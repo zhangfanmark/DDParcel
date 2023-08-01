@@ -8,7 +8,7 @@ DiffusionTensorScalarMeasurements="/data01/software/slicer/Slicer-5.2.2-linux-am
 BRAINSFit="/data01/software/slicer/Slicer-5.2.2-linux-amd64/Slicer --launch /data01/software/slicer/Slicer-5.2.2-linux-amd64/lib/Slicer-5.2/cli-modules/BRAINSFit"
 ResampleScalarVectorDWIVolume="/data01/software/slicer/Slicer-5.2.2-linux-amd64/Slicer --launch /data01/software/slicer/Slicer-5.2.2-linux-amd64/lib/Slicer-5.2/cli-modules/ResampleScalarVectorDWIVolume"
 
-atlas_T2=./100HCP-population-mean-T2.nii.gz
+atlas_T2=./100HCP-population-mean-T2-1mm.nii.gz
 
 subID=HCP-100337-b1000
 
@@ -71,11 +71,11 @@ nii_minEig_reg=$outputdir/$subID-dti-MinEigenvalue-Reg.nii.gz
 nii_midEig_reg=$outputdir/$subID-dti-MidEigenvalue-Reg.nii.gz
 nii_mask_reg=$outputdir/$subID-mask-Reg.nii.gz
 if [ ! -f $nii_mask_reg ]; then
-	$1 $ResampleScalarVectorDWIVolume -i linear ${nii_fa}     --Reference ${nii_fa}     --transformationFile $tfm $nii_fa_reg
-	$1 $ResampleScalarVectorDWIVolume -i linear ${nii_trace}  --Reference ${nii_trace}  --transformationFile $tfm $nii_trace_reg
-	$1 $ResampleScalarVectorDWIVolume -i linear ${nii_minEig} --Reference ${nii_minEig} --transformationFile $tfm $nii_minEig_reg
-	$1 $ResampleScalarVectorDWIVolume -i linear ${nii_midEig} --Reference ${nii_midEig} --transformationFile $tfm $nii_midEig_reg
-	$1 $ResampleScalarVectorDWIVolume -i nn     ${mask}       --Reference ${mask}       --transformationFile $tfm $nii_mask_reg
+	$1 $ResampleScalarVectorDWIVolume -i linear ${nii_fa}     --Reference ${atlas_T2}     --transformationFile $tfm $nii_fa_reg
+	$1 $ResampleScalarVectorDWIVolume -i linear ${nii_trace}  --Reference ${atlas_T2}  --transformationFile $tfm $nii_trace_reg
+	$1 $ResampleScalarVectorDWIVolume -i linear ${nii_minEig} --Reference ${atlas_T2} --transformationFile $tfm $nii_minEig_reg
+	$1 $ResampleScalarVectorDWIVolume -i linear ${nii_midEig} --Reference ${atlas_T2} --transformationFile $tfm $nii_midEig_reg
+	$1 $ResampleScalarVectorDWIVolume -i nn     ${mask}       --Reference ${atlas_T2}       --transformationFile $tfm $nii_mask_reg
 fi
 
 
@@ -86,10 +86,10 @@ nii_minEig_reg_norm=$outputdir/$subID-dti-MinEigenvalue-Reg-NormMasked.nii.gz
 nii_midEig_reg_norm=$outputdir/$subID-dti-MidEigenvalue-Reg-NormMasked.nii.gz
 
 if [ ! -f $nii_midEig_reg_norm ]; then
-	$1 python normalize.py --input $nii_fa_reg --mask $nii_mask_reg --output $nii_fa_reg_norm
-	$1 python normalize.py --input $nii_trace_reg --mask $nii_mask_reg --output $nii_trace_reg_norm
-	$1 python normalize.py --input $nii_minEig_reg --mask $nii_mask_reg --output $nii_minEig_reg_norm
-	$1 python normalize.py --input $nii_midEig_reg --mask $nii_mask_reg --output $nii_midEig_reg_norm
+	$1 python normalize.py --input $nii_fa_reg --mask $nii_mask_reg --output $nii_fa_reg_norm --flip 1
+	$1 python normalize.py --input $nii_trace_reg --mask $nii_mask_reg --output $nii_trace_reg_norm --flip 1
+	$1 python normalize.py --input $nii_minEig_reg --mask $nii_mask_reg --output $nii_minEig_reg_norm --flip 1
+	$1 python normalize.py --input $nii_midEig_reg --mask $nii_mask_reg --output $nii_midEig_reg_norm --flip 1
 fi
 
 # DDSurfer
