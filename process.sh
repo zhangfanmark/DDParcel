@@ -3,10 +3,13 @@
 #BRAINSFit=/Applications/Slicer5.2.2.app/Contents/lib/Slicer-5.2/cli-modules/BRAINSFit
 #ResampleScalarVectorDWIVolume=/Applications/Slicer5.2.2.app/Contents/lib/Slicer-5.2/cli-modules/ResampleScalarVectorDWIVolume
 
-DWIToDTIEstimation="/data01/software/slicer/Slicer-5.2.2-linux-amd64/Slicer --launch /data01/software/slicer/Slicer-5.2.2-linux-amd64/NA-MIC/Extensions-31382/SlicerDMRI/lib/Slicer-5.2/cli-modules/DWIToDTIEstimation"
-DiffusionTensorScalarMeasurements="/data01/software/slicer/Slicer-5.2.2-linux-amd64/Slicer --launch /data01/software/slicer/Slicer-5.2.2-linux-amd64/NA-MIC/Extensions-31382/SlicerDMRI/lib/Slicer-5.2/cli-modules/DiffusionTensorScalarMeasurements"
-BRAINSFit="/data01/software/slicer/Slicer-5.2.2-linux-amd64/Slicer --launch /data01/software/slicer/Slicer-5.2.2-linux-amd64/lib/Slicer-5.2/cli-modules/BRAINSFit"
-ResampleScalarVectorDWIVolume="/data01/software/slicer/Slicer-5.2.2-linux-amd64/Slicer --launch /data01/software/slicer/Slicer-5.2.2-linux-amd64/lib/Slicer-5.2/cli-modules/ResampleScalarVectorDWIVolume"
+Slicer_cli=${Slicer_root}/lib/Slicer-5.2/cli-modules
+Dmri_cli=${Slicer_root}/Extensions-31382/SlicerDMRI/lib/Slicer-5.2/cli-modules
+
+DWIToDTIEstimation="${Dmri_cli}/DWIToDTIEstimation"
+DiffusionTensorScalarMeasurements="${Dmri_cli}/DiffusionTensorScalarMeasurements"
+BRAINSFit="${Slicer_cli}/BRAINSFit"
+ResampleScalarVectorDWIVolume="${Slicer_cli}/ResampleScalarVectorDWIVolume"
 
 atlas_T2=./100HCP-population-mean-T2-1mm.nii.gz
 
